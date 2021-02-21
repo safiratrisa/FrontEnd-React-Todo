@@ -12,7 +12,12 @@ export default class Todolist extends Component {
         this.getTodos()
     }
     getTodos() {
-        axios.get(`todos/uncompleted/${localStorage.getItem('userID')}/${localStorage.getItem('labelid')}`)
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.get(`todos/uncompleted/${localStorage.getItem('userID')}/${localStorage.getItem('labelid')}`, config)
         .then(res => {
             this.setState({
                 todos: res.data.result,
@@ -24,7 +29,12 @@ export default class Todolist extends Component {
         })
     }
     completing(id) {
-        axios.put(`todos/completing/${id}`)
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.put(`todos/completing/${id}`, config)
         .then(res => {
             this.getTodos()
         })
@@ -33,7 +43,12 @@ export default class Todolist extends Component {
         })
     }
     delete(id) {
-        axios.delete(`todos/${id}`)
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.delete(`todos/${id}`, config)
         .then(res => {
             this.getTodos()
         })
@@ -42,11 +57,16 @@ export default class Todolist extends Component {
         })
     }
     insert(e) {
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
         // e.preventDefault();
         const data = {
             task: this.taskinsert
         }
-        axios.post(`todos/inserttodo/${localStorage.getItem('userID')}/${localStorage.getItem('labelid')}`, data)
+        axios.post(`todos/inserttodo/${localStorage.getItem('userID')}/${localStorage.getItem('labelid')}`, data, config)
         .then(res => {
             this.getTodos()
         })
@@ -67,11 +87,16 @@ export default class Todolist extends Component {
         }
     } 
     edittask(id, e) {
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
         // e.preventDefault();
         const data = {
             task: this.taskedit,
         }
-        axios.put(`todos/updatetask/${id}`, data)
+        axios.put(`todos/updatetask/${id}`, data, config)
         .then(res => {
             this.getTodos()
         })

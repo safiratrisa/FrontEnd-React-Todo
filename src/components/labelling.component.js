@@ -9,7 +9,12 @@ export default class Label extends Component {
         this.getLabels()
     }
     getLabels() {
-        axios.get('labels/all-labels')
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.get('labels/all-labels',config)
         .then(res => {
             this.setState({
                 labels: res.data.result
@@ -20,11 +25,16 @@ export default class Label extends Component {
         })
     }
     editlabel(id, e) {
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
         // e.preventDefault();
         const data = {
             label: this.labeledit,
         }
-        axios.put(`labels/updatelabel/${id}`, data)
+        axios.put(`labels/updatelabel/${id}`, data, config)
         .then(res => {
             this.getLabels()
         })
@@ -34,10 +44,15 @@ export default class Label extends Component {
     }
     editdesc(id, e) {
         // e.preventDefault();
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
         const data = {
             description: this.descedit,
         }
-        axios.put(`labels/updatedesc/${id}`, data)
+        axios.put(`labels/updatedesc/${id}`, data, config)
         .then(res => {
             this.getLabels()
         })
@@ -47,11 +62,16 @@ export default class Label extends Component {
     }
     insert(e) {
         // e.preventDefault();
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
         const data = {
             label: this.labelinsert,
             description: this.descinsert
         }
-        axios.post(`labels/insertlabels`, data)
+        axios.post(`labels/insertlabels`, data, config)
         .then(res => {
             this.getLabels()
         })
@@ -60,7 +80,12 @@ export default class Label extends Component {
         })
     }
     delete(id) {
-        axios.delete(`labels/${id}`)
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.delete(`labels/${id}`, config)
         .then(res => {
             this.getLabels()
         })

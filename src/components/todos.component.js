@@ -9,7 +9,12 @@ export default class Todos extends Component {
         this.getLabels()
     }
     getLabels() {
-        axios.get('labels/all-labels')
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.get('labels/all-labels', config)
         .then(res => {
             this.setState({
                 labels: res.data.result

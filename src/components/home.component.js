@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import HomeAdmin from '../components/homeAdmin.component'
-import HomeUser from '../components/homeUser.component'
 import HomeNoRole from '../components/homenorole.component'
 
 export default class Home extends Component {

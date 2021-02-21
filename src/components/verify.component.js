@@ -9,7 +9,12 @@ export default class Verify extends Component {
         this.getFriends()
     }
     getFriends() {
-        axios.get('users/unconfirmed')
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.get('users/unconfirmed', config)
         .then(res => {
             this.setState({
                 friends: res.data.result
@@ -20,7 +25,12 @@ export default class Verify extends Component {
         })
     }
     verification(id) {
-        axios.put(`users/confirmed/${id}`)
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.put(`users/confirmed/${id}`, config)
         .then(res => {
             this.getFriends()
         })

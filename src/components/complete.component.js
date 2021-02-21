@@ -13,7 +13,12 @@ export default class Completed extends Component {
         return moment(date).format('LLLL')
     }
     getTodos() {
-        axios.get(`todos/completed/${localStorage.getItem('userID')}`)
+        const config = {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+            }
+        };
+        axios.get(`todos/completed/${localStorage.getItem('userID')}`, config)
         .then(res => {
             this.setState({
                 todos: res.data.result
