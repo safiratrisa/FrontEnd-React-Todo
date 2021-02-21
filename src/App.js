@@ -42,7 +42,7 @@ import axios from 'axios'
               <Route exact path='/register' component={Register} /> 
               <Route exact path='/verify' component={Verify} /> 
               <Route exact path='/label' component={Label} />
-              <Route exact path='/todos' component={() => <Todos setUser={this.setUser}/>} />
+              <Route exact path='/todos' component={() => <Todos/>} />
               <Route exact path='/todolist' component={Todolist} />
               <Route exact path='/completed' component={Completed} />
             </Switch>
