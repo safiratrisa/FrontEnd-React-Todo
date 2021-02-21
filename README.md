@@ -17,6 +17,6 @@ REACT_APP_API_URL = 'http://localhost:1234/'
 ```
 4. Run the project
 ```
-  npm run serve
+  npm start
 ```
 
